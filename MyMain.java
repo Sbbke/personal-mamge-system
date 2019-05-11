@@ -11,21 +11,13 @@ public class MyMain{
 	{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 		Scanner in = new Scanner(System.in);
-		int s;
 
+		game();
 
-		System.out.printf("���ڭ̨Ӫ��Ӥp�C���a!\n");
-		System.out.printf("�C������:�N�u�O�ŤM*���Y*���Ӥw\n");
-		System.out.printf("�qĹ�F�N�i�H�i�t���o!\n(��J0�H�i�J�U�@�B)\n");
+		account();
 
-		s = in.nextInt();
-		if(s == 0){
-
-		
-			account();
-
-			mainPage();
-		} 		
+		mainPage();
+				
 	}
 		
 	public static void account()throws IOException, InterruptedException{
@@ -34,9 +26,9 @@ public class MyMain{
 		Scanner in = new Scanner(System.in);
 		String  x,y;
 
-		System.out.printf("�b��:");
+		System.out.printf("帳號:");
 		x = in.next();
-		System.out.printf("�K�X:");
+		System.out.printf("密碼:");
 		y = in.next();
 
 		if(x.equals("cis")==true && y.equals("1234")==true)
@@ -44,7 +36,6 @@ public class MyMain{
 			System.out.print("-------------------\n");
 			System.out.printf("Succes\n");	
 			System.out.print("-------------------\n");
-			String filePath = "member/cis.txt";
 
 			File file = new File("member",x);
 
@@ -62,7 +53,7 @@ public class MyMain{
 			System.out.print("ERROR");
 			System.exit(1);
 		}
-	
+		in.close();
 		
 	}
 
@@ -108,9 +99,9 @@ public class MyMain{
 		
 		
 		System.out.print("-------------------\n");
-		System.out.printf("�i�J�D���\n");
+		System.out.printf("進入主選單\n");
 		System.out.print("-------------------\n");
-		System.out.print("��J���O:\n\n 0:�ϥΪ̥\��\n 1:�޲z�\��\n -1:�n�X\n");
+		System.out.print("輸入指令:\n\n 0:使用者功能\n 1:管理功能\n -1:登出\n");
 		System.out.print("-------------------\n");
 		a = in.nextInt();
 		System.out.print("-------------------\n");
@@ -127,7 +118,7 @@ public class MyMain{
 		
 
 			System.out.print("-------------------\n");	
-			System.out.printf("�n�X\n");
+			System.out.printf("登出\n");
 			
 			System.out.print("-------------------\n");
 			System.exit(1);
@@ -136,7 +127,7 @@ public class MyMain{
 	
 		}else if(a == 1){
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
-			System.out.print("��J�K�X: ");
+			System.out.print("輸入密碼: ");
 			a = in.nextInt();
 
 			if(a == 1234){
@@ -160,9 +151,9 @@ public class MyMain{
 
 
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
-		System.out.printf("���������\n\n");	
+		System.out.printf("選擇顯示欄位\n\n");	
 		int c = 1;
-		System.out.printf(" 0:�Ҧ��ɮ�\n 1:�u�@�W��\n 2:�����ɶ�\n 3:�����ʤ���\n 4:���A\n 5:�s��\n 6:����\n 7:�u�@���e\n -1:�W�@��\n");
+		System.out.printf(" 0:所有檔案\n 1:工作名稱\n 2:完成時間\n 3:完成百分比\n 4:狀態\n 5:編號\n 6:分類\n 7:工作內容\n -1:上一頁\n");
 		
 		Scanner in = new Scanner(System.in);
 		int a, b,x;
@@ -180,24 +171,24 @@ public class MyMain{
 
 			c++;
 	
-			System.out.printf("�u�@�W��	�����ɶ�	�����ʤ���	���A		�s��		����		�u�@���e\n");
-			System.out.print("\n-------------------------------------------------------------��"+c+"��\n");
+			System.out.printf("工作名稱	完成時間	完成百分比	狀態		編號		分類		工作內容\n");
+			System.out.print("\n-------------------------------------------------------------第"+c+"頁\n");
 			for(int i = 0;i<Var.fn;i++){
 				System.out.printf("%-10s	%-10s	%-10s	%-10s	%-10s	%-10s	%-10s\n",str[i][0],str[i][1],str[i][2],str[i][3],str[i][4],str[i][5],str[i][6]);
 				
 				if((i+1)%5==0){
-				System.out.print("\n-------------------------------------------------------------��"+c+"��\n");
+				System.out.print("\n-------------------------------------------------------------第"+c+"頁\n");
 				c++;	
 			}	
 			}
 		
-			System.out.printf("\n -2:�ܧ󶶧�  -1:�W�@��\n");
+			System.out.printf("\n -2:變更順序  -1:上一頁\n");
 			a = in.nextInt();
 			if(a == -1){
 				manage(str);
 			}else if(a == -2){
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
-				System.out.printf("������:\n 0:�u�@�W��\n 1:�����ɶ�\n 2:�����ʤ���\n 3:���A\n 4:�s��\n 5:����\n 6:�u�@���e\n -1:�W�@��\n");
+				System.out.printf("選擇欄位:\n 0:工作名稱\n 1:完成時間\n 2:完成百分比\n 3:狀態\n 4:編號\n 5:分類\n 6:工作內容\n -1:上一頁\n");
 				b = in.nextInt();
 				if(b == -1){
 					manage(str);				
@@ -206,7 +197,7 @@ public class MyMain{
 					System.exit(1);	
 				}else{
 					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
-					System.out.printf("��ܶ���:\n 1:�Ѥj��p\n 2:�Ѥp��j\n");
+					System.out.printf("選擇順序:\n 1:由大到小\n 2:由小到大\n");
 					x = in.nextInt();
 					if(x == 1){
 						Big(str,b);
@@ -284,7 +275,7 @@ public class MyMain{
 		
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
 
-		System.out.print("��J����:\n\n 0:�j>�p\n 1:�p>�j    -1:�W�@��\n--------------(�ƧǨ̸�Ʒs�W����)\n");
+		System.out.print("輸入順序:\n\n 0:大>小\n 1:小>大    -1:上一頁\n--------------(排序依資料新增順序)\n");
 		Scanner in = new Scanner(System.in);
 		int a;
 		int f = 0, n = 0;
@@ -304,7 +295,7 @@ public class MyMain{
 			
 			}
 
-			System.out.printf("-------------------\n  -1:�W�@��\n");
+			System.out.printf("-------------------\n  -1:上一頁\n");
 			n = in.nextInt();
 			if(n == -1){
 				manage(str);			
@@ -323,7 +314,7 @@ public class MyMain{
 
 			}
 
-			System.out.printf("-------------------\n  -1:�W�@��\n");
+			System.out.printf("-------------------\n  -1:上一頁\n");
 			n = in.nextInt();
 			if(n == -1){
 				manage(str);			
@@ -345,20 +336,20 @@ public class MyMain{
 		int g;
 
 
-		System.out.print("��ܸ��(��J��ƧǸ�):\n\n");
-		System.out.print("��Ƨ�/");
-		if(Var.a1 == 1) System.out.print("�u�@�W��/");
-		if(Var.a2 == 1) System.out.print("�����ɶ�/");
-		if(Var.a3 == 1) System.out.print("�����ʤ���/");
-		if(Var.a4 == 1) System.out.print("���A/");
-		if(Var.a5 == 1) System.out.print("�s��/");
-		if(Var.a6 == 1) System.out.print("����/");
-		if(Var.a7 == 1) System.out.print("�u�@���e/");
+		System.out.print("選擇資料(輸入資料序號):\n\n");
+		System.out.print("資料序/");
+		if(Var.a1 == 1) System.out.print("工作名稱/");
+		if(Var.a2 == 1) System.out.print("完成時間/");
+		if(Var.a3 == 1) System.out.print("完成百分比/");
+		if(Var.a4 == 1) System.out.print("狀態/");
+		if(Var.a5 == 1) System.out.print("編號/");
+		if(Var.a6 == 1) System.out.print("分類/");
+		if(Var.a7 == 1) System.out.print("工作內容/");
 			
-		System.out.print("\n-------------------------------------------------------------��"+c+"��\n");
+		System.out.print("\n-------------------------------------------------------------第"+c+"頁\n");
 		c++;
 		for(a = 0;a<Var.fn;a++){
-			System.out.print("���"+(a+1)+":  ");
+			System.out.print("資料"+(a+1)+":  ");
 			if(Var.a1 == 1) System.out.print(str[a][0]+"	");
 			if(Var.a2 == 1) System.out.print(str[a][1]+"	");
 			if(Var.a3 == 1) System.out.print(str[a][2]+"	");
@@ -368,11 +359,11 @@ public class MyMain{
 			if(Var.a7 == 1) System.out.print(str[a][6]);
 			System.out.printf("\n");			
 			if((a+1)%5==0){
-				System.out.print("\n-------------------------------------------------------------��"+c+"��\n");
+				System.out.print("\n-------------------------------------------------------------第"+c+"頁\n");
 				c++;	
 			}			
 		}
-		System.out.print("\n -4:�]�w��ܶ��� -3:�j�M    -2:�s�W���    -1:�W�@�� \n");
+		System.out.print("\n -4:設定顯示項目 -3:搜尋    -2:新增資料    -1:上一頁 \n");
 		
 		System.out.print("-------------------------------------------------------------\n");
 
@@ -393,13 +384,13 @@ public class MyMain{
 			Var.fn +=1;
 			String news;
 
-			System.out.print("�̧ǿ�J���:\n\n");
+			System.out.print("依序輸入資料:\n\n");
 
-			System.out.print("�u�@�W��:");
+			System.out.print("工作名稱:");
 			news = in.next();
 			str[Var.fn-1][0] = news;
 
-			System.out.print("�����ɶ�:");
+			System.out.print("完成時間:");
 			news = in.next();
 			chars = news.toCharArray();
 			if((Character.toString(chars[0]).matches("[2?]")&&Character.toString(chars[1]).matches("[0-3?]")||
@@ -411,7 +402,7 @@ public class MyMain{
 				System.exit(1);		
 			}
 
-			System.out.print("�����ʤ���:");
+			System.out.print("完成百分比:");
 			news = in.next();
 			as = Integer.parseInt(news);
 			if(as<100&&as>0){
@@ -421,16 +412,16 @@ public class MyMain{
 				System.exit(1);			
 			
 			}
-			System.out.print("���A:");
+			System.out.print("狀態:");
 			news = in.next();
-			if(news.equals("���}�l")||news.equals("���椤")||news.equals("����")){
+			if(news.equals("未開始")||news.equals("執行中")||news.equals("完成")){
 				str[Var.fn-1][3] = news;
 			}else{
 				System.out.printf("ERROR");
 				System.exit(1);					
 			}
 
-			System.out.print("�s��:");
+			System.out.print("編號:");
 			news = in.next();
 			chars = news.toCharArray();
 			if(Character.toString(chars[0]).matches("[A-Z?]")){
@@ -440,11 +431,11 @@ public class MyMain{
 				System.exit(1);	
 			}
 
-			System.out.print("����:");
+			System.out.print("分類:");
 			news = in.next();
 			str[Var.fn-1][5] = news;
 
-			System.out.print("�u�@���e:");	
+			System.out.print("工作內容:");	
 			news = in.next();
 			str[Var.fn-1][6] = news;
 
@@ -460,58 +451,58 @@ public class MyMain{
 			search(str);	
 		}else if(b == -4){
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-			System.out.print("��J�O�_�n��ܪ����():\n");
+			System.out.print("輸入是否要顯示的欄位():\n");
 
-			System.out.printf(" 1:�u�@�W��"); 
+			System.out.printf(" 1:工作名稱"); 
 			if(Var.a1 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 2:�����ɶ�");
+			System.out.printf(" 2:完成時間");
 			if(Var.a2 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 3:�����ʤ���");
+			System.out.printf(" 3:完成百分比");
 			if(Var.a3 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 4:���A"); 
+			System.out.printf(" 4:狀態"); 
 			if(Var.a4 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 5:�s��"); 
+			System.out.printf(" 5:編號"); 
 			if(Var.a5 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 6:����"); 
+			System.out.printf(" 6:分類"); 
 			if(Var.a6 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" 7:�u�@���e"); 
+			System.out.printf(" 7:工作內容"); 
 			if(Var.a7 == 1){
 				System.out.printf("	O\n");
 			}else{
 				System.out.printf("	X\n");
 			}
 
-			System.out.printf(" -1:�W�@��\n");
+			System.out.printf(" -1:上一頁\n");
 
 			g = in.nextInt();
 			if(g == -1){
@@ -581,7 +572,7 @@ public class MyMain{
 
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 		int a,x,h = 0;
-		System.out.printf("��ܷj�M����:\n 1:�u�@�W��\n 2:�����ɶ�\n 3:�����ʤ���\n 4:���A\n 5:�s��\n 6:����\n 7:�u�@���e\n -1:�W�@��\n");
+		System.out.printf("選擇搜尋項目:\n 1:工作名稱\n 2:完成時間\n 3:完成百分比\n 4:狀態\n 5:編號\n 6:分類\n 7:工作內容\n -1:上一頁\n");
 		
 		Scanner in = new Scanner(System.in);		
 		a = in.nextInt();
@@ -592,7 +583,7 @@ public class MyMain{
 
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 			String se;
-			System.out.printf("��J�j�M���e:\n");
+			System.out.printf("輸入搜尋內容:\n");
 			se = in.next();
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 			
@@ -612,7 +603,7 @@ public class MyMain{
 			}
 
 			if(h == 1){
-				System.out.printf("\n-1:�^�W�@��\n");
+				System.out.printf("\n-1:回上一頁\n");
 				System.out.print("-------------------\n");
 
 				x = in.nextInt();
@@ -624,7 +615,7 @@ public class MyMain{
 					System.exit(1);	
 				}
 			}else{
-				System.out.printf("�d�L������ \n\n -1:�^�W�@��\n");
+				System.out.printf("查無此項目 \n\n -1:回上一頁\n");
 				System.out.print("-------------------\n");
 
 				x = in.nextInt();
@@ -645,7 +636,7 @@ public class MyMain{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();	
 
 		int a;
-		System.out.printf("��J���O:\n\n 0:�R�����\n 1:�u�@�W��\n 2:�����ɶ�\n 3:�����ʤ���\n 4:���A\n 5:�s��\n 6:����\n 7:�u�@���e\n -1:�W�@��\n");
+		System.out.printf("輸入指令:\n\n 0:刪除資料\n 1:工作名稱\n 2:完成時間\n 3:完成百分比\n 4:狀態\n 5:編號\n 6:分類\n 7:工作內容\n -1:上一頁\n");
 		System.out.print("-------------------\n");
 
 		Scanner in = new Scanner(System.in);		
@@ -671,7 +662,7 @@ public class MyMain{
 		}else if(a == 0){
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 
-			System.out.print("�T�{�R��?(yes or no)\n");
+			System.out.print("確認刪除?(yes or no)\n");
 			String y;
 
 			y = in.next();
@@ -721,7 +712,7 @@ public class MyMain{
 		System.out.print("-------------------\n");
 		System.out.print(str[i][x]+"\n");	
 		System.out.print("-------------------\n");			
-		System.out.printf("��J���O:\n\n 1:�s�褺�e\n -1:�W�@��\n");
+		System.out.printf("輸入指令:\n\n 1:編輯內容\n -1:上一頁\n");
 		System.out.print("-------------------\n");
 		a = in.nextInt();
 		System.out.print("-------------------\n");
@@ -729,7 +720,7 @@ public class MyMain{
 			data(str,i);
 			
 		}else if(a == 1){
-			System.out.printf("��J�s���e:");
+			System.out.printf("輸入新內容:");
 			news = in.next();
 
 			if(x == 0){
@@ -758,7 +749,7 @@ public class MyMain{
 				}
 			}else if(x == 3){
 
-				if(news.equals("���}�l")||news.equals("���椤")||news.equals("����")){
+				if(news.equals("未開始")||news.equals("執行中")||news.equals("完成")){
 					str[Var.fn-1][3] = news;
 				}else{
 					System.out.printf("ERROR");
@@ -830,7 +821,5 @@ public class MyMain{
 
 		
 	}
-	
-
 }
 
